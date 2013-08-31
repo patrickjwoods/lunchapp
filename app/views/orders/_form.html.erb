@@ -1,0 +1,19 @@
+
+<% if user_signed_in? %>
+
+  <%= simple_form_for(@order, html: { class: "form-horizontal"} ) do |f| %>
+    <%= f.error_notification %>
+
+    <%= f.input :content, as: :text, input_html: { rows: "3"} %>
+    
+    <div class="form-actions">
+      <%= f.button :submit, class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
+  <% else #if they're not logged in, show this %>
+   
+  <p>Pease sign in to place an order. Or, if you don't have an account, <%= link_to "create one",new_user_registration_path %> .</p>
+  <p><%= link_to "Signup Now", new_user_registration_path, class: "btn btn-primary btn-large" %>
+
+<%end %>
