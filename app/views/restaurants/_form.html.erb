@@ -1,0 +1,13 @@
+<%= simple_form_for(@restaurant, html: { class: "form-horizontal"} ) do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :name, label: "Restaurnt Name" %>
+  <%= f.input :home_link, label: "URL of restaurnt's website" %>
+  <%= f.input :menu_link, label: "URL of menu" %>
+  <%= f.input :day, collection: [ "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" ], label: "What day is this restaurant available?" %>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+
+<% end %>

@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: restaurants
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  menu_link  :string(255)
+#  home_link  :string(255)
+#  day        :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  menu_link: MyString
+  home_link: MyString
+  day: MyString
+
+two:
+  name: MyString
+  menu_link: MyString
+  home_link: MyString
+  day: MyString

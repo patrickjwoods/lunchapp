@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
+gem 'devise'
+gem 'omniauth-google-apps'
+gem "simple_form", "~> 3.0.0.rc"
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -31,6 +34,12 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
+
+group :development, :test do
+  gem 'annotate'
+end
+
+gem 'bootstrap-sass', '~> 2.3.2.1'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
