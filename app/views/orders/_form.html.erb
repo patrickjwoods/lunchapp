@@ -1,6 +1,8 @@
 
 <% if user_signed_in? %>
 
+  <p>Today is <%= @whatDay %></p>
+
   <%= simple_form_for(@order, html: { class: "form-horizontal"} ) do |f| %>
     <%= f.error_notification %>
 
@@ -13,7 +15,7 @@
 
   <% else #if they're not logged in, show this %>
    
-  <p>Pease sign in to place an order. Or, if you don't have an account, <%= link_to "create one",new_user_registration_path %> .</p>
-  <p><%= link_to "Signup Now", new_user_registration_path, class: "btn btn-primary btn-large" %>
+  <p><%= link_to "Pease sign in to place an order.", new_user_session_path, class: "btn btn-primary" %></p>
+  <p><%= link_to "Signup Now", new_user_registration_path, class: "btn" %>
 
 <%end %>

@@ -1,33 +1,42 @@
-<h1>Listing restaurants</h1>
 
-<table class="table table-striped table-bordered">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Menu link</th>
-      <th>Home link</th>
-      <th>Day</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<% if admin_signed_in? %>
 
-  <tbody>
-    <% @restaurants.each do |restaurant| %>
+  <h1>Listing restaurants</h1>
+
+  <table class="table table-striped table-bordered">
+    <thead>
       <tr>
-        <td><%= restaurant.name %></td>
-        <td><%= restaurant.menu_link %></td>
-        <td><%= restaurant.home_link %></td>
-        <td><%= restaurant.day %></td>
-        <td><%= link_to 'Show', restaurant %></td>
-        <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
-        <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>Menu link</th>
+        <th>Home link</th>
+        <th>Day</th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @restaurants.each do |restaurant| %>
+        <tr>
+          <td><%= restaurant.name %></td>
+          <td><%= restaurant.menu_link %></td>
+          <td><%= restaurant.home_link %></td>
+          <td><%= restaurant.day %></td>
+          <td><%= link_to 'Show', restaurant %></td>
+          <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
+          <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Restaurant', new_restaurant_path %>
+  <br>
+
+  <%= link_to 'New Restaurant', new_restaurant_path %>
+
+<% else %>
+
+  <p><%= link_to "Place and order", new_order_path, class: "btn" %></p>
+
+<% end %>

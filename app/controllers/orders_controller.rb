@@ -15,6 +15,11 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @order = Order.new
+
+      todayIs = Date.today.wday
+      days = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ]
+      @whatDay = days[todayIs]
+
   end
 
   # GET /orders/1/edit
