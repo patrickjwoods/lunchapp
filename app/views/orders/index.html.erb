@@ -1,24 +1,46 @@
-<h1>Listing orders</h1>
+<h1>All Orders</h1>
 
-<table>
+<table class="table table-striped table-bordered">
   <thead>
     <tr>
-      <th>Content</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Date Ordered</th>
+      <% if admin_signed_in? %> 
+        <th>Ordered by</th> 
+      <% end %>
+      <th>Order Content</th>
+      <th>Edit Order</th>
+      <th>Cancel Order</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @orders.each do |order| %>
-      <tr>
-        <td><%= order.content %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+
+    <% if admin_signed_in? %> 
+      <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.created_at.strftime("%m/%d/%y") %></td>
+            <td>
+                <% thisUser = User.where(id: order.user_id ) %>
+                <%= thisUser.first.email %>
+            </td>
+            <td><%= order.content %></td>
+            <td><%= link_to 'Edit', edit_order_path(order) %></td>
+            <td><%= link_to 'Cancel', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %> 
+    <% end %> 
+
+    <% if user_signed_in?%> 
+      <% current_user.orders.find(params[:id]) do |order| %>
+        <tr>
+          <td><%= order.created_at.strftime("%m/%d/%y") %></td>
+          <td><%= order.content %></td>
+          <td><%= link_to 'Edit', edit_order_path(order) %></td>
+          <td><%= link_to 'Cancel', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %> 
+    <% end %> 
+
   </tbody>
 </table>
 

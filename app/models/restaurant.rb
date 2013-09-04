@@ -12,4 +12,9 @@
 #
 
 class Restaurant < ActiveRecord::Base
+	validates :name, presence: true
+	validates :menu_link, presence: true
+	validates :home_link, presence: true
+	validates :day, presence: true,
+			  :uniqueness => true
 end
