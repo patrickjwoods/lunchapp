@@ -6,6 +6,8 @@ gem 'devise'
 gem 'omniauth-google-apps'
 gem "simple_form", "~> 3.0.0.rc"
 
+gem 'bootstrap-sass', '~> 2.3.2.1'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -34,14 +36,13 @@ end
 
 group :production do
   gem 'pg'
+  gem 'rails_12factor'
 end
 
 group :development, :test do
   gem 'annotate'
   gem 'sqlite3'
 end
-
-gem 'bootstrap-sass', '~> 2.3.2.1'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
