@@ -6,9 +6,6 @@ gem 'devise'
 gem 'omniauth-google-apps'
 gem "simple_form", "~> 3.0.0.rc"
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -37,6 +34,7 @@ end
 
 group :development, :test do
   gem 'annotate'
+  gem 'sqlite3'
 end
 
 gem 'bootstrap-sass', '~> 2.3.2.1'
