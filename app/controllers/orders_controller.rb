@@ -26,9 +26,12 @@ class OrdersController < ApplicationController
     
     @order = current_user.orders.new
 
+      # logic to determine the day of week, then present it in human-readable format
       todayIs = Date.today.wday
       days = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ]
       @whatDay = days[todayIs]
+
+      # take the day from above and lookup the print the restaurant
       @todaysRestaurant = Restaurant.find_by day: @whatDay
       @restName = @todaysRestaurant.name
       @menuURL = @todaysRestaurant.menu_link
