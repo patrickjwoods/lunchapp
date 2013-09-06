@@ -21,6 +21,7 @@
     <ul class="nav pull-right">
       
       <% if admin_signed_in? # admin nav elements %>
+        <li><%= link_to "All Orders", orders_path %></li>
         <li><%= link_to "All Restaurants", restaurants_path %></li>
         <li><%= link_to "Logout", destroy_admin_session_path, method: :delete %></li>
 
