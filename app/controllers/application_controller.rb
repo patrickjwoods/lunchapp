@@ -9,4 +9,9 @@ class ApplicationController < ActionController::Base
 
     end  
 
+    def after_sign_in_path_for(user)
+
+        new_order_path
+
+    end 
 end
