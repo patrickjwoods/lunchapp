@@ -4,7 +4,6 @@ class OrdersController < ApplicationController
   def today
     @orders = Order.all
     @restName = @orders.first.restaurant_name
-    @todaysOrders = @orders.where( created_at: Date.todayIs )
     @todayIs = Date.today
   end
 
