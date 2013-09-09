@@ -9,6 +9,7 @@ Orderapp::Application.routes.draw do
 
   root 'orders#new'
   get 'restaurants' => 'restaurants#index'
+  get 'today' => 'orders#today'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

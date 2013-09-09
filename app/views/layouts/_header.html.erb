@@ -1,48 +1,52 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
-    <div class="container">
- 
-      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
- 
-      <!-- Be sure to leave the brand out there if you want it shown -->
-      <%= link_to "Order Lunch", root_path, class: "brand" %>
- 
-      <!-- Everything you want hidden at 940px or less, place within here -->
-      <div class="nav-collapse collapse">
-    		<ul class="nav">
-    			<li><%= link_to "Home", root_path %></li>
-    		</ul>
+      <div class="row-fluid">
+        <div class="span8 offset2">
 
-    <ul class="nav pull-right">
-      
-      <% if admin_signed_in? # admin nav elements %>
-        <li><%= link_to "All Orders", orders_path %></li>
-        <li><%= link_to "All Restaurants", restaurants_path %></li>
-        <li><%= link_to "Logout", destroy_admin_session_path, method: :delete %></li>
+       
+            <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+       
+            <!-- Be sure to leave the brand out there if you want it shown -->
+            <p class="brand" >archer>malmo lunch</p>
+       
+            <!-- Everything you want hidden at 940px or less, place within here -->
+            <div class="nav-collapse collapse">
+          		<ul class="nav">
+          			<li><% link_to "Home", root_path %></li>
+          		</ul>
 
-      <% else %>
+          <ul class="nav pull-right">
+            
+            <% if admin_signed_in? # admin nav elements %>
+              <li><%= link_to "Today's Orders", today_path %></li>
+              <li><%= link_to "All Orders", orders_path %></li>
+              <li><%= link_to "All Restaurants", restaurants_path %></li>
+              <li><%= link_to "Logout", destroy_admin_session_path, method: :delete %></li>
 
-        <% if !user_signed_in? # hide if User signed in %>
+            <% else %>
 
-          <li><%= link_to "Admin Login", new_admin_session_path %></li>
+              <% if !user_signed_in? # hide if User signed in %>
 
-        <% end %>
+                <li><%= link_to "Admin Login", new_admin_session_path %></li>
 
-      <% end %> 
+              <% end %>
 
-      <% if user_signed_in? # user nav elements %>
-        <li><%= link_to "All Orders", orders_path %></li>
-        <li><%= link_to "Place Order", root_path %></li>
-        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
-      <% end %>
-    </ul>
+            <% end %> 
+
+            <% if user_signed_in? # user nav elements %>
+              <li><%= link_to "All Orders", orders_path %></li>
+              <li><%= link_to "Place Order", root_path %></li>
+              <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+            <% end %>
+          </ul>
 
 
+          </div>
 
       </div>
  

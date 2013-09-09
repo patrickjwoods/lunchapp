@@ -1,13 +1,10 @@
-<h1>All Orders</h1>
-
+<h1>Today's Orders</h1>
 <table class="table table-striped table-bordered">
   <thead>
     <tr>
       <th>Date Ordered</th>
       <th>Ordered From</th>
-      <% if admin_signed_in? %> 
-        <th>Ordered by</th> 
-      <% end %>
+      <th>Ordered by</th> 
       <th>Order Content</th>
       <th>Edit Order</th>
       <th>Cancel Order</th>
@@ -17,7 +14,7 @@
   <tbody>
 
     <% if admin_signed_in? %> 
-      <% @orders.each do |order| %>
+      <% @orders.where( "created_at >?", @todayIs ).each do |order| %>
           <tr>
             <td><%= order.created_at.strftime("%m/%d/%y") %></td>
             <td><%= @restName %></td>
@@ -31,19 +28,6 @@
           </tr>
         <% end %> 
     <% end %> 
-
-    <% if user_signed_in? %> 
-      <% current_user.orders.each do |order| %>
-        <tr>
-          <td><%= order.created_at.strftime("%m/%d/%y") %></td>
-          <td><%= @restName %></td>
-          <td><%= order.content %></td>
-          <td><%= link_to 'Edit', edit_order_path(order) %></td>
-          <td><%= link_to 'Cancel', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %> 
-    <% end %> 
-
   </tbody>
 </table>
 

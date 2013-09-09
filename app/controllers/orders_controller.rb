@@ -1,17 +1,18 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
+  def today
+    @orders = Order.all
+    @restName = @orders.first.restaurant_name
+    @todaysOrders = @orders.where( created_at: Date.todayIs )
+    @todayIs = Date.today
+  end
+
   # GET /orders
   # GET /orders.json
   def index
     @orders = Order.all
-
-
-    #if admin_signed_in?
-    #  @thisUser = User.where(id: order.user_id )
-    #  @orderedBy = thisUser.first.email
-    #end
-
+    @restName = @orders.first.restaurant_name
   end
 
   # GET /orders/1
@@ -23,18 +24,21 @@ class OrdersController < ApplicationController
   def new
     
     if user_signed_in?
-    
-    @order = current_user.orders.new
 
-      # logic to determine the day of week, then present it in human-readable format
-      todayIs = Date.today.wday
-      days = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ]
-      @whatDay = days[todayIs]
+      @orders = Order.all
+      
+      @order = current_user.orders.new
 
-      # take the day from above and lookup the print the restaurant
-      @todaysRestaurant = Restaurant.find_by day: @whatDay
-      @restName = @todaysRestaurant.name
-      @menuURL = @todaysRestaurant.menu_link
+        # logic to determine the day of week, then present it in human-readable format
+        todayIs = Date.today.wday
+        days = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ]
+        @whatDay = days[todayIs]
+
+        # take the day from above and lookup and print the restaurant
+        @todaysRestaurant = Restaurant.find_by day: @whatDay
+        @restName = @todaysRestaurant.name
+        @restID = @todaysRestaurant.id
+        @menuURL = @todaysRestaurant.menu_link
 
     end
 
@@ -67,7 +71,7 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1.json
   def update
 
-    @pin = current_user.orders.find(params[:id])
+    @order = current_user.orders.find(params[:id])
 
     respond_to do |format|
       if @order.update(order_params)
@@ -84,7 +88,7 @@ class OrdersController < ApplicationController
   # DELETE /orders/1.json
   def destroy
     
-    @pin = current_user.orders.find(params[:id])
+    @order = current_user.orders.find(params[:id])
 
     @order.destroy
     respond_to do |format|
@@ -101,6 +105,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:content)
+      params.require(:order).permit(:content, :restaurant_name)
     end
 end

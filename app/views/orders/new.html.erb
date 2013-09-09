@@ -1,5 +1,24 @@
-<h1>New order</h1>
+<h1>Place a lunch order</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', orders_path %>
+<% if user_signed_in?%> 
+	<table class="table table-striped table-bordered">
+	  <thead>
+	    <tr>
+	    	<th width=120> </th>
+	      <th>Previous Orders from <%= @restName %></th>
+	    </tr>
+	  </thead>
+		<tbody>
+		  <% current_user.orders.where( restaurant_name: @restName ).each do |order| %>
+		    <tr>
+		      <td>click to reorder</td>
+		      <td><%= order.content %></td>
+		    </tr>
+		  <% end %> 	
+		</tbody>
+	</table>
+<% end %> 
+
+

@@ -4,19 +4,19 @@
   <p>Today is <%= @whatDay %></p>
   <p>Order from <strong><%= @restName %></strong>: <%= link_to "view menu", @menuURL, :target => "_blank", :class => "btn" %></p>
 
-  <%= simple_form_for(@order, html: { class: "form-horizontal"} ) do |f| %>
+  <%= simple_form_for(@order, html: { class: ""} ) do |f| %>
     <%= f.error_notification %>
-
-    <%= f.input :content, as: :text, input_html: { rows: "3"} %>
+    <%= f.input :content, as: :text, label: "What would you like?", input_html: { rows: "3"} %>
+    <%= f.input :restaurant_name, :as => :hidden, :input_html => { :value => @restName } %>
     
     <div class="form-actions">
-      <%= f.button :submit, class: "btn btn-primary" %>
+      <%= f.button :submit, value: "Place Order", class: "btn btn-primary" %>
     </div>
   <% end %>
 
   <% else #if they're not logged in, show this %>
    
-  <p><%= link_to "Pease sign in to place an order.", new_user_session_path, class: "btn btn-primary" %></p>
-  <p><%= link_to "Signup Now", new_user_registration_path, class: "btn" %>
+  <p><%= link_to "Please sign in to place an order.", new_user_session_path, class: "btn btn-large" %></p>
+  <p><%= link_to "Signup Now", new_user_registration_path, class: "btn" %><i>  you must be signed in to place an order</i></p>
 
 <%end %>

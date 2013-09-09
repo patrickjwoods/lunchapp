@@ -2,12 +2,12 @@
 #
 # Table name: orders
 #
-#  id            :integer          not null, primary key
-#  content       :string(255)
-#  created_at    :datetime
-#  updated_at    :datetime
-#  user_id       :integer
-#  restaurant_id :integer
+#  id              :integer          not null, primary key
+#  content         :string(255)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  user_id         :integer
+#  restaurant_name :string(255)
 #
 
 class Order < ActiveRecord::Base
@@ -16,5 +16,9 @@ class Order < ActiveRecord::Base
 	has_one :restaurant
 
 	default_scope :order => 'orders.created_at DESC'
+
+	def order_params
+      params.require(:order).permit(:content, :restaurant_name)
+    end
 
 end
